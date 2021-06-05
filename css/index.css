@@ -1,0 +1,22 @@
+*{
+    margin:0;
+    padding:0;
+    cursor:url("../img/mouse.png"),auto;
+}
+#container{
+    width:1024px;
+    height:100%;
+    margin:auto;
+    margin-top: 30px;
+    margin-bottom: 0;
+    text-align: center;
+}
+#canvas{
+    border:1px solid #c4c4c4;
+}
+#startBTN{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
