@@ -32,7 +32,6 @@ backgroundimg.onload = function (ev) {
     context.lineWidth = 10;
     context.strokeStyle = "green";
     context.lineCap = "round";
-
     Player.x = canvas.width / 2 - 30;
     Player.y = canvas.height - 125;
     context.drawImage(Rdoodle, canvas.width / 2 - 30, canvas.height-290);
@@ -40,6 +39,8 @@ backgroundimg.onload = function (ev) {
     context.drawImage(Title, Player.x + 30 - 150, Player.y - 400);
     context.drawImage(Select, Player.x + 30 - 100, Player.y+60);
 
+    alert("您好，欢迎来到跳跳游戏！排行榜已上线，快来挑战吧！\n请理性游戏，不要沉迷；请理性刷分，不要攻击数据库！\n衷心感谢您的游玩，您的愉悦是本游戏最大的荣幸！");
+    
     function startanimation() {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -60,6 +61,35 @@ backgroundimg.onload = function (ev) {
             window.cancelAnimationFrame(startanimation);
             var userName = prompt("Game Over!\nYour score is: " + parseInt(GameData.score) + "\n请留下尊姓大名!", "Anyomous User");
             alert(userName+", 你的得分是: " + parseInt(GameData.score)+"\n太棒了! 再来一局吧?");
+
+            var userdata = {
+                name :        userName, 
+                score :       GameData.score
+            };
+            $.ajax({
+                type :        "POST",
+                async :       false,
+                url :         "https://phoenix-jump-backend.zhengnq.com/insert",
+                contentType : "application/json",
+                dataType :    "json",
+                data :        JSON.stringify(userdata),
+                error :       function(jqXHR, textStatus, errorThrown){
+                                  console.info(jqXHR.responseText);
+                              }
+            });
+
+            $.ajax({
+                 type :       "GET",
+                 async :      false,
+                 url :        "https://phoenix-jump-backend.zhengnq.com/query", 
+                 success :    function(scores){
+                                  alert(scores);
+                              },
+                 error :      function(jqXHR, textStatus, errorThrown){
+                                  console.info(jqXHR.responseText);
+                              }
+            });
+        
             location.reload();
         } else {
             requestAnimationFrame(startanimation);

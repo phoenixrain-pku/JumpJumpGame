@@ -129,11 +129,6 @@ function gamescroll() {
         ChangeBasis = 130;
         GameData.level = 60;
         GameData.probability = 50;
-        
-        Ldoodle.src = "img/Ldoodlenew.png";
-        Rdoodle.src = "img/Rdoodlenew.png";
-        Lfrog.src = "img/Lfrognew.png";
-        Rfrog.src = "img/Rfrognew.png";
 
     }
     if (GameData.score >= 700) {
@@ -146,6 +141,10 @@ function gamescroll() {
         GameData.level = 100;
         GameData.probability = 75;
         
+        Ldoodle.src = "img/Ldoodlenew.png";
+        Rdoodle.src = "img/Rdoodlenew.png";
+        Lfrog.src = "img/Lfrognew.png";
+        Rfrog.src = "img/Rfrognew.png";
     }
     if (GameData.score >= 1300) {
         ChangeBasis = 80;
